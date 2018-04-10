@@ -41,7 +41,7 @@ function shuffle(array) {
     return array;
 }
 
-
+function shuffle(cards);
 
 /*
  * set up the event listener for a card. If a card is clicked:
