@@ -1,7 +1,23 @@
 /*
  * Create a list that holds all of your cards
  */
-
+let cards = [ 'fa fa-ambulance',
+			'fa fa-ambulance', 
+			'fa fa-plane',
+			'fa fa-plane',
+			'fa fa-anchor',
+			'fa fa-anchor',
+			'fa fa-heartbeat',
+			'fa fa-heartbeat',
+			'fa fa-puzzle-piece',
+			'fa fa-puzzle-piece',
+			'fa fa-tree',
+			'fa fa-tree',
+			'fa fa-paw',
+			'fa fa-paw',
+			'fa fa-music',
+			'fa fa-music'
+];
 
 /*
  * Display the cards on the page
@@ -26,6 +42,7 @@ function shuffle(array) {
 }
 
 
+
 /*
  * set up the event listener for a card. If a card is clicked:
  *  - display the card's symbol (put this functionality in another function that you call from this one)
@@ -35,4 +52,8 @@ function shuffle(array) {
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
+ *
+
+ 
  */
+ 
