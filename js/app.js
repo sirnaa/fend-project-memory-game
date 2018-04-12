@@ -26,13 +26,20 @@ function shuffle(array) {
     return array;
 }
 
-function shuffle(cards);
+shuffle(cards);
 
 const deck = document.querySelector('.deck');
-deck.innerHTML='';
+deck.innerHTML = '';
+const fragment = document.createDocumentFragment();
 for ( let i = 0; i < cards.length; i++) {
-	let deckEl=document.querySelector('.card');
-	deckEl=
+	const cardEl = document.createElement('li');
+	cardEl.className = 'card';
+	const liContent = document.createElement('i');
+	liContent.className = cards[i].firstChild.className;
+	cardEl.appendChild(liContent);
+	fragment.appendChild(cardEl);
+}
+deck.appendChild(fragment);
 	
 	
 
