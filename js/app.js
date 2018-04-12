@@ -1,23 +1,8 @@
 /*
  * Create a list that holds all of your cards
  */
-let cards = [ 'fa fa-ambulance',
-			'fa fa-ambulance', 
-			'fa fa-plane',
-			'fa fa-plane',
-			'fa fa-anchor',
-			'fa fa-anchor',
-			'fa fa-heartbeat',
-			'fa fa-heartbeat',
-			'fa fa-puzzle-piece',
-			'fa fa-puzzle-piece',
-			'fa fa-tree',
-			'fa fa-tree',
-			'fa fa-paw',
-			'fa fa-paw',
-			'fa fa-music',
-			'fa fa-music'
-];
+let card = document.getElementsByClassName('card');
+let cards = [...card];
 
 /*
  * Display the cards on the page
@@ -42,6 +27,14 @@ function shuffle(array) {
 }
 
 function shuffle(cards);
+
+const deck = document.querySelector('.deck');
+deck.innerHTML='';
+for ( let i = 0; i < cards.length; i++) {
+	let deckEl=document.querySelector('.card');
+	deckEl=
+	
+	
 
 /*
  * set up the event listener for a card. If a card is clicked:
