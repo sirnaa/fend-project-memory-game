@@ -32,15 +32,13 @@ const deck = document.querySelector('.deck');
 deck.innerHTML = '';
 const fragment = document.createDocumentFragment();
 for ( let i = 0; i < cards.length; i++) {
-	const cardEl = document.createElement('li');
+	const cardEl = cards[i];
 	cardEl.className = 'card';
-	const liContent = document.createElement('i');
-	liContent.className = cards[i].firstChild.className;
-	cardEl.appendChild(liContent);
 	fragment.appendChild(cardEl);
 }
 deck.appendChild(fragment);
 	
+
 	
 
 /*
