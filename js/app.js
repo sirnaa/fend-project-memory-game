@@ -3,6 +3,9 @@
  */
 let card = document.getElementsByClassName('card');
 let cards = [...card];
+const deck = document.querySelector('.deck');
+deck.innerHTML = '';
+
 
 /*
  * Display the cards on the page
@@ -25,19 +28,20 @@ function shuffle(array) {
 
     return array;
 }
+startGame();
 
-shuffle(cards);
-
-const deck = document.querySelector('.deck');
-deck.innerHTML = '';
-const fragment = document.createDocumentFragment();
-for ( let i = 0; i < cards.length; i++) {
-	const cardEl = cards[i];
-	cardEl.className = 'card';
-	fragment.appendChild(cardEl);
+function startGame() {
+	shuffle(cards);
+	const fragment = document.createDocumentFragment();
+	for ( let i = 0; i < cards.length; i++) {
+		let cardEl = cards[i];
+		cardEl.removeAttribute('class');
+		cardEl.setAttribute('class','card');
+		
+		fragment.appendChild(cardEl);
+	}
+	deck.appendChild(fragment);
 }
-deck.appendChild(fragment);
-	
 
 	
 
@@ -53,5 +57,7 @@ deck.appendChild(fragment);
  *
 
  
- */
  
+ function openMe(
+ card.addEventListener('click', openMe);
+ */
