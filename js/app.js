@@ -35,9 +35,7 @@ function startGame() {
 	const fragment = document.createDocumentFragment();
 	for ( let i = 0; i < cards.length; i++) {
 		let cardEl = cards[i];
-		cardEl.removeAttribute('class');
-		cardEl.setAttribute('class','card');
-		
+		cardEl.classList.remove("show", "open", "match", "disabled");
 		fragment.appendChild(cardEl);
 	}
 	deck.appendChild(fragment);
@@ -54,10 +52,15 @@ function startGame() {
  *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- *
+ */
 
  
+ //this does not work yet!
+
  
- function openMe(
- card.addEventListener('click', openMe);
- */
+ deck.addEventListener('click', openMe());
+  
+function openMe (evt) {
+ e.card.classList.toggle('open');
+ e.card.classList.toggle('show');
+}
