@@ -57,7 +57,21 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+function clear(a,b) {
+		firstCard.classList.remove('show', 'open');
+		secondCard.classList.remove('show', 'open');
+}
+ 
+function setTimer(a,b) { 
+	const fTime = setTimeout(clear, 3000);
 
+	
+}
+function showMe(a,b) {
+	openCards.push(a);
+	openCards.push(b);
+	setTimer();
+}
  
  
  deck.onclick = function flipMe (e) {
@@ -65,5 +79,11 @@ function startGame() {
  if (!firstCard) {
 	 firstCard = e.target;
 	 firstCard.classList.add('show', 'open');
- }
+	 
+ } 
+	else { 
+	secondCard = e.target;
+	secondCard.classList.add('show','open');
+	showMe();
+	}
 };
