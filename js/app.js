@@ -2,7 +2,11 @@
  * Create a list that holds all of your cards
  */
 let card = document.getElementsByClassName('card');
+
 let cards = [...card];
+let firstCard = 0;
+let secondCard = 0;
+let openCards = [];
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
 
@@ -55,12 +59,11 @@ function startGame() {
  */
 
  
- //this does not work yet!
-
  
- deck.addEventListener('click', openMe());
-  
-function openMe (evt) {
- e.card.classList.toggle('open');
- e.card.classList.toggle('show');
-}
+ deck.onclick = function flipMe (e) {
+	 if (!e.target.classList.contains('card')) return; 
+ if (!firstCard) {
+	 firstCard = e.target;
+	 firstCard.classList.add('show', 'open');
+ }
+};
