@@ -67,9 +67,8 @@ function setTimer(a,b) {
 
 	
 }
-function showMe(a,b) {
+function showMe(a) {
 	openCards.push(a);
-	openCards.push(b);
 	setTimer();
 }
  
@@ -79,9 +78,9 @@ function showMe(a,b) {
  if (!firstCard) {
 	 firstCard = e.target;
 	 firstCard.classList.add('show', 'open');
-	 
+	 openCards.push(firstCard);	 
  } 
-	else { 
+	else if (openCards.length < 2) { 
 	secondCard = e.target;
 	secondCard.classList.add('show','open');
 	showMe();
