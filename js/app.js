@@ -7,6 +7,7 @@ let cards = [...card];
 let firstCard = 0;
 let secondCard = 0;
 let openCards = [];
+let openList = [];
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
 
@@ -39,7 +40,7 @@ function startGame() {
 	const fragment = document.createDocumentFragment();
 	for ( let i = 0; i < cards.length; i++) {
 		let cardEl = cards[i];
-		cardEl.classList.remove("show", "open", "match", "disabled");
+		cardEl.classList.remove("show", "open", "match");
 		fragment.appendChild(cardEl);
 	}
 	deck.appendChild(fragment);
@@ -57,32 +58,47 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-function clear(a,b) {
-		firstCard.classList.remove('show', 'open');
+function result() {
+	let classOfFirst = firstCard.firstElementChild.classList;
+	let classOfSecond = secondCard.firstElementChild.classList;
+	if (classOfFirst === classOfSecond) {
+		//for (let i=0; i < openCards.length; i++) {
+			//openCards[i].classList.add('match');
+		// }
+		openList.push(openCards); 
+		
+	}
+	else { firstCard.classList.remove('show', 'open');
 		secondCard.classList.remove('show', 'open');
+		
+	}
+openCards.splice(0,2);	
+
 }
  
-function setTimer(a,b) { 
-	const fTime = setTimeout(clear, 3000);
+function setTimer() { 
+	const fTime = setTimeout(result, 1000);
 
 	
 }
-function showMe(a) {
-	openCards.push(a);
+function showMe() {
+	openCards.push(secondCard);
 	setTimer();
 }
  
+deck.addEventListener('click', flipMe);
  
- deck.onclick = function flipMe (e) {
+function flipMe(e) {
 	 if (!e.target.classList.contains('card')) return; 
  if (!firstCard) {
 	 firstCard = e.target;
 	 firstCard.classList.add('show', 'open');
 	 openCards.push(firstCard);	 
  } 
-	else if (openCards.length < 2) { 
+	else if (openCards.length = 1) { 
 	secondCard = e.target;
 	secondCard.classList.add('show','open');
 	showMe();
 	}
+	
 };
