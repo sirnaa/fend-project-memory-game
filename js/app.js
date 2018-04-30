@@ -61,10 +61,10 @@ function startGame() {
 function result() {
 	let classOfFirst = firstCard.firstElementChild.classList;
 	let classOfSecond = secondCard.firstElementChild.classList;
-	if (classOfFirst === classOfSecond) {
-		//for (let i=0; i < openCards.length; i++) {
-			//openCards[i].classList.add('match');
-		// }
+	if (classOfFirst == classOfSecond) {
+		for (let i=0; i < openCards.length; i++) {
+			openCards[i].classList.add('match');
+		 }
 		openList.push(openCards); 
 		
 	}
@@ -73,6 +73,8 @@ function result() {
 		
 	}
 openCards.splice(0,2);	
+firstCard=0;
+secondCard=0;
 
 }
  
@@ -82,7 +84,7 @@ function setTimer() {
 	
 }
 function showMe() {
-	openCards.push(secondCard);
+	
 	setTimer();
 }
  
@@ -90,15 +92,16 @@ deck.addEventListener('click', flipMe);
  
 function flipMe(e) {
 	 if (!e.target.classList.contains('card')) return; 
+	
  if (!firstCard) {
 	 firstCard = e.target;
 	 firstCard.classList.add('show', 'open');
 	 openCards.push(firstCard);	 
  } 
-	else if (openCards.length = 1) { 
+	else { 
 	secondCard = e.target;
 	secondCard.classList.add('show','open');
+	openCards.push(secondCard);
 	showMe();
 	}
-	
-};
+	};
