@@ -8,6 +8,7 @@ let firstCard = 0;
 let secondCard = 0;
 let openCards = [];
 let openList = [];
+let classOfFirst, classOfSecond;
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
 
@@ -58,10 +59,10 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-function result() {
-	let classOfFirst = firstCard.firstElementChild.classList;
-	let classOfSecond = secondCard.firstElementChild.classList;
-	if (classOfFirst == classOfSecond) {
+function result(a,b) {
+	 classOfFirst = a.firstElementChild.classList;
+	 classOfSecond = b.firstElementChild.classList;
+	if (classOfFirst === classOfSecond) {
 		for (let i=0; i < openCards.length; i++) {
 			openCards[i].classList.add('match');
 		 }
@@ -78,14 +79,14 @@ secondCard=0;
 
 }
  
-function setTimer() { 
-	const fTime = setTimeout(result, 1000);
+function setTimer(a,b) { 
+	const timer = setTimeout(result(a,b), 2000);
 
 	
 }
-function showMe() {
+function showMe(a,b) {
 	
-	setTimer();
+	setTimer(a,b);
 }
  
 deck.addEventListener('click', flipMe);
@@ -102,6 +103,6 @@ function flipMe(e) {
 	secondCard = e.target;
 	secondCard.classList.add('show','open');
 	openCards.push(secondCard);
-	showMe();
+	showMe(firstCard, secondCard);
 	}
 	};
