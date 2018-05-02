@@ -61,6 +61,7 @@ function startGame() {
 function result() {
 	let classOfFirst = firstCard.firstElementChild.className;
 	let classOfSecond = secondCard.firstElementChild.className;
+	//must be className
 	if (classOfFirst == classOfSecond) {
 		for (let i=0; i < openCards.length; i++) {
 			openCards[i].classList.add('match');
