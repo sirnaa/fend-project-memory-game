@@ -8,7 +8,7 @@ let firstCard = 0;
 let secondCard = 0;
 let openCards = [];
 let openList = [];
-let classOfFirst, classOfSecond;
+let classOfFirst, classOfSecond, first, second;
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
 
@@ -60,49 +60,47 @@ function startGame() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 function result(a,b) {
-	 classOfFirst = a.firstElementChild.classList;
-	 classOfSecond = b.firstElementChild.classList;
+	 classOfFirst = a.firstChildElement.className;
+	 classOfSecond = b.firstElementChild.className;
 	if (classOfFirst === classOfSecond) {
 		for (let i=0; i < openCards.length; i++) {
 			openCards[i].classList.add('match');
 		 }
-		openList.push(openCards); 
+		openList = openList.concat(openCards); 
 		
 	}
-	else { firstCard.classList.remove('show', 'open');
-		secondCard.classList.remove('show', 'open');
+	else { a.classList.remove('show', 'open');
+		b.classList.remove('show', 'open');
 		
 	}
 openCards.splice(0,2);	
-firstCard=0;
-secondCard=0;
+
 
 }
  
 function setTimer(a,b) { 
-	const timer = setTimeout(result(a,b), 2000);
+	const timer = setTimeout(result(first,second), 1000);
 
 	
 }
 function showMe(a,b) {
 	
-	setTimer(a,b);
+	setTimer(first,second);
 }
  
-deck.addEventListener('click', flipMe);
- 
-function flipMe(e) {
-	 if (!e.target.classList.contains('card')) return; 
-	
- if (!firstCard) {
-	 firstCard = e.target;
-	 firstCard.classList.add('show', 'open');
-	 openCards.push(firstCard);	 
- } 
-	else { 
-	secondCard = e.target;
-	secondCard.classList.add('show','open');
-	openCards.push(secondCard);
-	showMe(firstCard, secondCard);
-	}
+
+
+
+	for ( let i=0; i<2; i++) {
+		deck.addEventListener('click', flipMe);
+		function flipMe(e) {
+		 if (!e.target.classList.contains('card')) return; 
+		openCards[i]= e.target;
+		openCards[i].classList.add('show','open');
+		 if (i==1){
+			 first = openCards[0];
+			 second = openCards[1];
+			 showMe(first, second);
+		 };
+		}
 	};
