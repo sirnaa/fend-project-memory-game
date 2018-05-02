@@ -59,8 +59,8 @@ function startGame() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 function result() {
-	let classOfFirst = firstCard.firstElementChild.classList;
-	let classOfSecond = secondCard.firstElementChild.classList;
+	let classOfFirst = firstCard.firstElementChild.className;
+	let classOfSecond = secondCard.firstElementChild.className;
 	if (classOfFirst == classOfSecond) {
 		for (let i=0; i < openCards.length; i++) {
 			openCards[i].classList.add('match');
