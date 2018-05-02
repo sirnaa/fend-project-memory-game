@@ -8,6 +8,7 @@ let firstCard = 0;
 let secondCard = 0;
 let openCards = [];
 let openList = [];
+let preA = [];
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
 
@@ -65,8 +66,9 @@ function result() {
 	if (classOfFirst == classOfSecond) {
 		for (let i=0; i < openCards.length; i++) {
 			openCards[i].classList.add('match');
-		 }
-		openList.push(openCards); 
+					 }
+		preA = openCards;
+		openList = openList.concat(preA); 
 		
 	}
 	else { firstCard.classList.remove('show', 'open');
@@ -74,6 +76,7 @@ function result() {
 		
 	}
 openCards.splice(0,2);	
+preA.splice(0,2);
 firstCard=0;
 secondCard=0;
 deck.addEventListener('click', flipMe);
