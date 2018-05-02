@@ -76,6 +76,7 @@ function result() {
 openCards.splice(0,2);	
 firstCard=0;
 secondCard=0;
+deck.addEventListener('click', flipMe);
 
 }
  
@@ -103,6 +104,7 @@ function flipMe(e) {
 	secondCard = e.target;
 	secondCard.classList.add('show','open');
 	openCards.push(secondCard);
+	deck.removeEventListener('click', flipMe);
 	showMe();
 	}
 	};
