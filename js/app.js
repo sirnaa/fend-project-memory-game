@@ -11,6 +11,9 @@ let openList = [];
 let preA = [];
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
+let countMoves = document.querySelector('.moves');
+let counter = 0;
+countMoves.textContent = "0";
 
 
 /*
@@ -59,6 +62,12 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+function moveCounter() {
+	
+	countMoves.textContent = counter.toString();
+	
+}
+ 
 function result() {
 	let classOfFirst = firstCard.firstElementChild.className;
 	let classOfSecond = secondCard.firstElementChild.className;
@@ -79,6 +88,8 @@ openCards.splice(0,2);
 preA.splice(0,2);
 firstCard=0;
 secondCard=0;
+counter++;
+moveCounter();
 deck.addEventListener('click', flipMe);
 
 }
