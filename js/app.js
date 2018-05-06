@@ -9,11 +9,15 @@ let secondCard = 0;
 let openCards = [];
 let openList = [];
 let preA = [];
+let newS = [];
+const stars = document.querySelector('.stars'); 
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
-let countMoves = document.querySelector('.moves');
+const countMoves = document.querySelector('.moves');
 let counter = 0;
 countMoves.textContent = "0";
+const restartB = document.querySelector('.restart');
+
 
 
 /*
@@ -48,6 +52,7 @@ function startGame() {
 		fragment.appendChild(cardEl);
 	}
 	deck.appendChild(fragment);
+	
 }
 
 	
@@ -62,11 +67,29 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
+
 function moveCounter() {
 	
 	countMoves.textContent = counter.toString();
 	
-}
+	
+	if (counter === 9 ) { 
+		changeStar();
+		}
+	if (counter === 13) {
+		changeStar();
+		}
+	if (counter === 17) {
+		changeStar();
+		}
+		function changeStar() {
+			let starList = Array.from(document.querySelectorAll('.fa-star'));
+			let last = starList.length;
+		starList[last-1].classList.replace('fa-star','fa-star-o');
+		}
+	}
+
+
  
 function result() {
 	let classOfFirst = firstCard.firstElementChild.className;
@@ -122,3 +145,5 @@ function flipMe(e) {
 	showMe();
 	}
 	};
+
+//restartB.addEventListener('click', startGame);
