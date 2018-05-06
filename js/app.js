@@ -2,14 +2,12 @@
  * Create a list that holds all of your cards
  */
 let card = document.getElementsByClassName('card');
-
 let cards = [...card];
 let firstCard = 0;
 let secondCard = 0;
 let openCards = [];
 let openList = [];
 let preA = [];
-let newS = [];
 const stars = document.querySelector('.stars'); 
 const deck = document.querySelector('.deck');
 deck.innerHTML = '';
@@ -94,8 +92,7 @@ function moveCounter() {
 function result() {
 	let classOfFirst = firstCard.firstElementChild.className;
 	let classOfSecond = secondCard.firstElementChild.className;
-	//must be className
-	if (classOfFirst == classOfSecond) {
+		if (classOfFirst == classOfSecond) {
 		for (let i=0; i < openCards.length; i++) {
 			openCards[i].classList.add('match');
 					 }
@@ -146,4 +143,10 @@ function flipMe(e) {
 	}
 	};
 
-//restartB.addEventListener('click', startGame);
+restartB.addEventListener('click', restartGame);
+function restartGame() {
+	let counter = 0;
+	countMoves.textContent = "0";
+	openList.splice(0,16);
+	startGame();
+}
