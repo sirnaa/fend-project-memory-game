@@ -65,7 +65,10 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-
+deck.addEventListener('click', flipMe);
+if (openList.length == 16) {
+	window.alert('ya finished. yay.');
+}
 function moveCounter() {
 	
 	countMoves.textContent = counter.toString();
@@ -124,7 +127,6 @@ function showMe() {
 	setTimer();
 }
  
-deck.addEventListener('click', flipMe);
  
 function flipMe(e) {
 	 if (!e.target.classList.contains('card')) return; 
@@ -145,7 +147,7 @@ function flipMe(e) {
 
 restartB.addEventListener('click', restartGame);
 function restartGame() {
-	let counter = 0;
+	counter = 0;
 	countMoves.textContent = "0";
 	openList.splice(0,16);
 	startGame();
