@@ -147,6 +147,10 @@ function flipMe(e) {
 
 restartB.addEventListener('click', restartGame);
 function restartGame() {
+	let starsBack = Array.from(document.querySelectorAll('.fa-star-o'));
+	for (i=0; i < starsBack.length; i++) {
+		starsBack[i].classList.replace('fa-star-o','fa-star');
+		}
 	counter = 0;
 	countMoves.textContent = "0";
 	openList.splice(0,16);
