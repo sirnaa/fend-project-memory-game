@@ -18,6 +18,10 @@ const restartB = document.querySelector('.restart');
 let seconds = 0, minutes = 0; 
 let secs, mins;
 let clearTime;
+const modal = document.getElementById('modal');
+const closeMe = document.querySelector('.close-btn');
+const playAgain = document.querySelector('.play-again');
+const contemplate = document.querySelector('.contemplate');
 
 
 
@@ -63,7 +67,7 @@ function startGame() {
 	if ( minutes === 60 ) { restartGame(); } 
 	secs = ( seconds < 10 ) ? ( `0 ${seconds}` ) : ( seconds ); 
 	const timer = document.querySelector('.timer'); 
-	timer.innerHTML = `Time ${mins} ${secs}`; 
+	timer.innerHTML = ` ${mins} ${secs}`; 
 	seconds++; 
 	clearTime = setTimeout( "startWatch( )", 1000 ); 
 	}; 
@@ -131,7 +135,7 @@ counter++;
 moveCounter();
 if (openList.length == 16) {
 	clearTimeout(clearTime);
-	window.alert('ya finished. yay.');
+	modal.style.display = 'block';
 }
 deck.addEventListener('click', flipMe);
 
@@ -179,4 +183,17 @@ function restartGame() {
 	mins = '00 :';
 	secs = '00';
 	startGame();
+}
+closeMe.addEventListener('click', closeModal);
+function closeModal() {
+	modal.style.display = 'none';
+}
+playAgain.addEventListener('click', seriously);
+function seriously() {
+	restartGame();
+	modal.style.display = 'none';
+}
+contemplate.addEventListener('click', doThat);
+function doThat() {
+	document.body.style.display ='none';
 }
