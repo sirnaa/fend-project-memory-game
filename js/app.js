@@ -15,6 +15,9 @@ const countMoves = document.querySelector('.moves');
 let counter = 0;
 countMoves.textContent = "0";
 const restartB = document.querySelector('.restart');
+let seconds = 0, minutes = 0; 
+let secs, mins;
+let clearTime;
 
 
 
@@ -50,10 +53,24 @@ function startGame() {
 		fragment.appendChild(cardEl);
 	}
 	deck.appendChild(fragment);
+	startWatch();
 	
 }
 
+ function startWatch( ) { 
+	if ( seconds === 60 ) { seconds = 0; minutes++; } 
+	mins =( minutes < 10 ) ? ( `0 ${minutes} :` ) : ( `${minutes} : `);
+	if ( minutes === 60 ) { restartGame(); } 
+	secs = ( seconds < 10 ) ? ( `0 ${seconds}` ) : ( seconds ); 
+	const timer = document.querySelector('.timer'); 
+	timer.innerHTML = `Time ${mins} ${secs}`; 
+	seconds++; 
+	clearTime = setTimeout( "startWatch( )", 1000 ); 
+	}; 
 	
+
+	
+
 
 /*
  * set up the event listener for a card. If a card is clicked:
@@ -66,9 +83,8 @@ function startGame() {
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
 deck.addEventListener('click', flipMe);
-if (openList.length == 16) {
-	window.alert('ya finished. yay.');
-}
+
+
 function moveCounter() {
 	
 	countMoves.textContent = counter.toString();
@@ -113,9 +129,13 @@ firstCard=0;
 secondCard=0;
 counter++;
 moveCounter();
+if (openList.length == 16) {
+	clearTimeout(clearTime);
+	window.alert('ya finished. yay.');
+}
 deck.addEventListener('click', flipMe);
 
-}
+};
  
 function setTimer() { 
 	const fTime = setTimeout(result, 1000);
@@ -154,5 +174,9 @@ function restartGame() {
 	counter = 0;
 	countMoves.textContent = "0";
 	openList.splice(0,16);
+	clearTimeout(clearTime);
+	minutes = 0, seconds = 0;
+	mins = '00 :';
+	secs = '00';
 	startGame();
 }
