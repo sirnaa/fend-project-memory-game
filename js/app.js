@@ -53,11 +53,12 @@ function startGame() {
 	const fragment = document.createDocumentFragment();
 	for ( let i = 0; i < cards.length; i++) {
 		let cardEl = cards[i];
-		cardEl.classList.remove("show", "open", "match");
+		cardEl.classList.remove('show', 'open', 'match', 'disabled');
 		fragment.appendChild(cardEl);
 	}
 	deck.appendChild(fragment);
 	startWatch();
+	deck.addEventListener('click', flipMe);
 	
 }
 
@@ -86,7 +87,7 @@ function startGame() {
  *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
  *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
  */
-deck.addEventListener('click', flipMe);
+
 
 
 function moveCounter() {
@@ -117,15 +118,15 @@ function result() {
 	let classOfSecond = secondCard.firstElementChild.className;
 		if (classOfFirst == classOfSecond) {
 		for (let i=0; i < openCards.length; i++) {
-			openCards[i].classList.add('match');
+			openCards[i].classList.add('match','disabled');
 					 }
 		preA = openCards;
 		openList = openList.concat(preA); 
 		
 	}
-	else { firstCard.classList.remove('show', 'open');
-		secondCard.classList.remove('show', 'open');
-		
+	else { firstCard.classList.remove('show', 'open','disabled');
+		secondCard.classList.remove('show', 'open','disabled');
+				
 	}
 openCards.splice(0,2);	
 preA.splice(0,2);
@@ -142,7 +143,7 @@ deck.addEventListener('click', flipMe);
 };
  
 function setTimer() { 
-	const fTime = setTimeout(result, 1000);
+	const fTime = setTimeout(result, 750);
 
 	
 }
@@ -153,19 +154,20 @@ function showMe() {
  
  
 function flipMe(e) {
+	if (openCards.length<2) {
 	 if (!e.target.classList.contains('card')) return; 
-	
+	 	
  if (!firstCard) {
 	 firstCard = e.target;
-	 firstCard.classList.add('show', 'open');
+	 firstCard.classList.add('show', 'open', 'disabled');
 	 openCards.push(firstCard);	 
  } 
 	else { 
 	secondCard = e.target;
-	secondCard.classList.add('show','open');
+	secondCard.classList.add('show','open','disabled');
 	openCards.push(secondCard);
-	deck.removeEventListener('click', flipMe);
 	showMe();
+	}
 	}
 	};
 

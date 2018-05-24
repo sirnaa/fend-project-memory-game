@@ -2,6 +2,10 @@ html {
     box-sizing: border-box;
 }
 
+body  {
+	font-family: 'Skranji', cursive;
+}
+
 *,
 *::before,
 *::after {
@@ -29,7 +33,7 @@ body {
 }
 
 h1 {
-    font-family: 'Open Sans', sans-serif;
+    font-family: 'Trebuchet MS', sans-serif;
     font-weight: 300;
 }
 
@@ -80,7 +84,10 @@ h1 {
     background: #02ccba;
     font-size: 33px;
 }
-
+.deck .card.disabled {
+	pointer-events: none;
+}
+	
 /*
  * Styles for the Score Panel
  */
