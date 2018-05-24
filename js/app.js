@@ -22,6 +22,7 @@ const modal = document.getElementById('modal');
 const closeMe = document.querySelector('.close-btn');
 const playAgain = document.querySelector('.play-again');
 const contemplate = document.querySelector('.contemplate');
+let stats=document.querySelector('.stats');
 
 
 
@@ -136,7 +137,9 @@ counter++;
 moveCounter();
 if (openList.length == 16) {
 	clearTimeout(clearTime);
+	stats.innerHTML = ` Time: ${mins}${secs}. Moves: ${counter}.`;
 	modal.style.display = 'block';
+	
 }
 deck.addEventListener('click', flipMe);
 
