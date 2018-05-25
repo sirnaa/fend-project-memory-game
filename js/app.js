@@ -24,18 +24,13 @@ const closeMe = document.querySelector('.close-btn');
 const playAgain = document.querySelector('.play-again');
 const contemplate = document.querySelector('.contemplate');
 let stats = document.querySelector('.stats');
+let starRate = 3;
 
 
 
-/*
- * Display the cards on the page
- *   - shuffle the list of cards using the provided "shuffle" method below
- *   - loop through each card and create its HTML
- *   - add each card's HTML to the page
- */
 
-// Shuffle function from http://stackoverflow.com/a/2450976
-function shuffle(array) {
+//@description Shuffle function from http://stackoverflow.com/a/2450976 
+ function shuffle(array) {
     var currentIndex = array.length,
         temporaryValue, randomIndex;
 
@@ -49,8 +44,9 @@ function shuffle(array) {
 
     return array;
 }
-startGame();
 
+//TODO: Loop to create card HTML and add it to page
+//TODO: start game & event listener
 function startGame() {
     shuffle(cards);
     const fragment = document.createDocumentFragment();
@@ -64,7 +60,7 @@ function startGame() {
     deck.addEventListener('click', flipMe);
 
 }
-
+//@description StopWatch for the game, on 60 min restarts 
 function startWatch() {
     if (seconds === 60) {
         seconds = 0;
@@ -80,47 +76,35 @@ function startWatch() {
     seconds++;
     clearTime = setTimeout("startWatch( )", 1000);
 };
+//TODO: call the function to start game
+startGame();
 
+//@description Puts 2 cards in array, adds classes to show content
+function flipMe(e) {
+    if (openCards.length < 2) {
+        if (!e.target.classList.contains('card')) return;
 
-
-
-/*
- * set up the event listener for a card. If a card is clicked:
- *  - display the card's symbol (put this functionality in another function that you call from this one)
- *  - add the card to a *list* of "open" cards (put this functionality in another function that you call from this one)
- *  - if the list already has another card, check to see if the two cards match
- *    + if the cards do match, lock the cards in the open position (put this functionality in another function that you call from this one)
- *    + if the cards do not match, remove the cards from the list and hide the card's symbol (put this functionality in another function that you call from this one)
- *    + increment the move counter and display it on the page (put this functionality in another function that you call from this one)
- *    + if all cards have matched, display a message with the final score (put this functionality in another function that you call from this one)
- */
-
-
-
-function moveCounter() {
-
-    countMoves.textContent = counter.toString();
-
-
-    if (counter === 9) {
-        changeStar();
+        if (!firstCard) {
+            firstCard = e.target;
+            firstCard.classList.add('show', 'open', 'disabled');
+            openCards.push(firstCard);
+        } else {
+            secondCard = e.target;
+            secondCard.classList.add('show', 'open', 'disabled');
+            openCards.push(secondCard);
+            showMe();
+        }
     }
-    if (counter === 13) {
-        changeStar();
-    }
-    if (counter === 17) {
-        changeStar();
-    }
+};
 
-    function changeStar() {
-        let starList = Array.from(document.querySelectorAll('.fa-star'));
-        let last = starList.length;
-        starList[last - 1].classList.replace('fa-star', 'fa-star-o');
-    }
+function showMe() {
+    setTimer();
 }
-
-
-
+//@description Set timer for cards to close
+function setTimer() {
+    const fTime = setTimeout(result, 750);
+}
+//@description Check  and compare card content, match or close
 function result() {
     let classOfFirst = firstCard.firstElementChild.className;
     let classOfSecond = secondCard.firstElementChild.className;
@@ -142,45 +126,38 @@ function result() {
     secondCard = 0;
     counter++;
     moveCounter();
+	
+	//@description Condition for game end
     if (openList.length == 16) {
         clearTimeout(clearTime);
-        stats.innerHTML = ` Time: ${mins}${secs}. Moves: ${counter}.`;
+        stats.innerHTML = ` Time: ${mins}${secs}. Moves: ${counter}. Star rating: ${starRate} `;
         modal.style.display = 'block';
 
     }
-    deck.addEventListener('click', flipMe);
-
+   
 };
+//@description Counter and stars functionallity 
+function moveCounter() {
+	
+    countMoves.textContent = counter.toString();
 
-function setTimer() {
-    const fTime = setTimeout(result, 750);
-
-
-}
-
-function showMe() {
-
-    setTimer();
-}
-
-
-function flipMe(e) {
-    if (openCards.length < 2) {
-        if (!e.target.classList.contains('card')) return;
-
-        if (!firstCard) {
-            firstCard = e.target;
-            firstCard.classList.add('show', 'open', 'disabled');
-            openCards.push(firstCard);
-        } else {
-            secondCard = e.target;
-            secondCard.classList.add('show', 'open', 'disabled');
-            openCards.push(secondCard);
-            showMe();
-        }
+    if (counter === 12) {
+        changeStar();
+		starRate = 2;
     }
-};
+    if (counter === 18) {
+        changeStar();
+		starRate = 1;
+    }
+  
+    function changeStar() {
+        let starList = Array.from(document.querySelectorAll('.fa-star'));
+        let last = starList.length;
+        starList[last - 1].classList.replace('fa-star', 'fa-star-o');
+    }
+}
 
+//@description Event listener for restart button
 restartB.addEventListener('click', restartGame);
 
 function restartGame() {
@@ -191,12 +168,17 @@ function restartGame() {
     counter = 0;
     countMoves.textContent = "0";
     openList.splice(0, 16);
+	openCards.splice(0,2);
+	firstCard = 0;
+	secondCard = 0;
     clearTimeout(clearTime);
     minutes = 0, seconds = 0;
     mins = '00 :';
     secs = '00';
+	starRate = 3;
     startGame();
 }
+//@description Event listeners for modal input fields
 closeMe.addEventListener('click', closeModal);
 
 function closeModal() {
