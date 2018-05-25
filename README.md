@@ -3,18 +3,25 @@
 ## Table of Contents
 
 * [Instructions](#instructions)
+* [Built with](#Builtwith)
 * [Contributing](#contributing)
+
 
 ## Instructions
 
-The starter project has some HTML and CSS styling to display a static version of the Memory Game project. You'll need to convert this project from a static project to an interactive one. This will require modifying the HTML and CSS files, but primarily the JavaScript file.
+This project is made for Udacity's Front End Nanodegree Course from Udacity's starter code. 
 
-To get started, open `js/app.js` and start building out the app's functionality
+To get started, open the `index.html` in any web browser and open the game. 
 
-For specific, detailed instructions, look at the project instructions in the [Udacity Classroom](https://classroom.udacity.com/me).
+The goal of the game is to find card pairs that match. Time and moves count, but do not affect the end of the game.
+
+The game ends when all card pairs are matched! 
+
+## Built with
+
+HTML5, CSS3, JavaScript
 
 ## Contributing
 
-This repository is the starter code for _all_ Udacity students. Therefore, we most likely will not accept pull requests.
+Contributions are welcome!
 
-For details, check out [CONTRIBUTING.md](CONTRIBUTING.md).
